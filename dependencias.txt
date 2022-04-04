@@ -1,0 +1,27 @@
+express: npm i express
+
+mongose: npm imongoose
+
+morgan: npm i morgan
+
+helmet: npm i helmet
+
+cors: npm i cors
+
+compression: npm i compression
+
+Dependencias de Desarrollo
+
+node: npm i @types/node -D
+
+mongoose: npm i @types/mongoose -D
+
+express: npm i @types/express -D
+
+nodemon: npm i nodemon -D
+
+typescript: npm i typescript -D
+
+morgan: npm i @types/morgan -D
+
+helmet: npm i @types/helmet -D
