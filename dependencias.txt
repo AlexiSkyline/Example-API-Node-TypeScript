@@ -25,3 +25,7 @@ typescript: npm i typescript -D
 morgan: npm i @types/morgan -D
 
 helmet: npm i @types/helmet -D
+
+cors: npm i --save-dev @types/cors
+
+compression: npm i --save-dev @types/compression
