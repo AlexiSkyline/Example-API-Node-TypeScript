@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from 'cors';
 
 import indexRoutes from './Routes/IndexRoutes';
+import PostsRoutes from './Routes/PostsRoutes';
 
 class Server {
     private app: Application;
@@ -39,11 +40,12 @@ class Server {
 
     routes() {
         this.app.use( indexRoutes );
+        this.app.use( '/api/posts', PostsRoutes );
     }
 
     start() {
         this.app.listen( this.app.get( 'port' ), () => {
-            console.log( 'Server on port', this.app.get( 'port' ) );
+            console.log( 'Server on port', this.app.get( 'Api: /api/posts' ) );
         });
     }
 }
