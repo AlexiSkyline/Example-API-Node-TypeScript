@@ -36,11 +36,19 @@ class PostRoutes {
     async updatePost( req: Request, res: Response ) {
         const { url } = req.params;
         const post = await Post.findOneAndUpdate({ url }, req.body, { new: true });
+        if( !post ) {
+            return res.status( 404 ).json({ message: 'Post not found' });
+        }
         res.json( post );
     }
 
-    deletePost( req: Request, res: Response ) {
-        res.send( 'DeletePost' );
+    async deletePost( req: Request, res: Response ) {
+        const { url } = req.params;
+        const post = await Post.findOneAndDelete({ url });
+        if( !post ) {
+            return res.status( 404 ).json({ message: 'Post not found' });
+        }
+        res.json({ response: 'Post Deleted Successfully', post });
     }
 
     routes() {
