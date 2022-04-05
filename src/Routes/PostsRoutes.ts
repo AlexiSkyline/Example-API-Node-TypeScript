@@ -1,5 +1,7 @@
 import { Request, Response, Router } from 'express';
 
+import Post from '../Models/Post';
+
 class PostRoutes {
     public router: Router;
 
@@ -8,8 +10,9 @@ class PostRoutes {
         this.routes();
     }
 
-    getPosts( req: Request, res: Response ) {
-        res.send( 'Posts' );
+    async getPosts( req: Request, res: Response ) {
+        const posts = await Post.find();
+        res.json( posts );
     }
 
     getPost( req: Request, res: Response ) {
