@@ -19,8 +19,11 @@ class PostRoutes {
         res.send( 'Post' );
     }
 
-    createPost( req: Request, res: Response ) {
-        res.send( 'CreatePost' );
+    async createPost( req: Request, res: Response ) {
+        const { title, url, content, imagen } = req.body;
+        const newPost = new Post( { title, url, content, imagen } );
+        await newPost.save();
+        res.json({ data: newPost });
     }
 
     updatePost( req: Request, res: Response ) {
