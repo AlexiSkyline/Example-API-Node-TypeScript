@@ -33,8 +33,10 @@ class PostRoutes {
         res.json({ data: newPost });
     }
 
-    updatePost( req: Request, res: Response ) {
-        res.send( 'UpdatePost' );
+    async updatePost( req: Request, res: Response ) {
+        const { url } = req.params;
+        const post = await Post.findOneAndUpdate({ url }, req.body, { new: true });
+        res.json( post );
     }
 
     deletePost( req: Request, res: Response ) {
