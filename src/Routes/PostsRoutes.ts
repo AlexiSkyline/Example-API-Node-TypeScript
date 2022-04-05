@@ -15,8 +15,15 @@ class PostRoutes {
         res.json( posts );
     }
 
-    getPost( req: Request, res: Response ) {
-        res.send( 'Post' );
+    async getPost( req: Request, res: Response ) {
+        const { url } = req.params;
+        const post = await Post.findOne({ url });
+
+        if( !post ) {
+            return res.status( 404 ).json({ message: 'Post not found' });
+        }
+
+        res.json( post );
     }
 
     async createPost( req: Request, res: Response ) {
