@@ -27,7 +27,9 @@ class UserRoutes {
     }
 
     public async updateUser( req: Request, res: Response ): Promise<any> {
-        
+        const { username } = req.params;
+        const user = await User.findOneAndUpdate({ username }, req.body, { new: true });
+        res.json( user );
     }
 
     public async deleteUser( req: Request, res: Response ): Promise<any> {
@@ -38,6 +40,7 @@ class UserRoutes {
         this.router.get( '/', this.getUsers );
         this.router.get( '/:username', this.getUser );
         this.router.post( '/', this.createUser );
+        this.router.put( '/:username', this.updateUser );
     }
 }
 
