@@ -33,7 +33,9 @@ class UserRoutes {
     }
 
     public async deleteUser( req: Request, res: Response ): Promise<any> {
-        
+        const { username } = req.params;
+        const user = await User.findOneAndDelete({ username });
+        res.json({ response: 'User Deleted Successfully', user });
     }
 
     routes() {
@@ -41,6 +43,7 @@ class UserRoutes {
         this.router.get( '/:username', this.getUser );
         this.router.post( '/', this.createUser );
         this.router.put( '/:username', this.updateUser );
+        this.router.delete( '/:username', this.deleteUser );
     }
 }
 
