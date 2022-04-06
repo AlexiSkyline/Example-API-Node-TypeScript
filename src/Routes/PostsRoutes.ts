@@ -10,30 +10,28 @@ class PostRoutes {
         this.routes();
     }
 
-    async getPosts( req: Request, res: Response ) {
+    public async getPosts( req: Request, res: Response ): Promise<void> {
         const posts = await Post.find();
         res.json( posts );
     }
 
-    async getPost( req: Request, res: Response ) {
+    public async getPost( req: Request, res: Response ): Promise<any> {
         const { url } = req.params;
         const post = await Post.findOne({ url });
-
         if( !post ) {
             return res.status( 404 ).json({ message: 'Post not found' });
         }
-
         res.json( post );
     }
 
-    async createPost( req: Request, res: Response ) {
+    public async createPost( req: Request, res: Response ): Promise<void> {
         const { title, url, content, imagen } = req.body;
         const newPost = new Post( { title, url, content, imagen } );
         await newPost.save();
         res.json({ data: newPost });
     }
 
-    async updatePost( req: Request, res: Response ) {
+    public async updatePost( req: Request, res: Response ): Promise<any> {
         const { url } = req.params;
         const post = await Post.findOneAndUpdate({ url }, req.body, { new: true });
         if( !post ) {
@@ -42,7 +40,7 @@ class PostRoutes {
         res.json( post );
     }
 
-    async deletePost( req: Request, res: Response ) {
+    public async deletePost( req: Request, res: Response ): Promise<any> {
         const { url } = req.params;
         const post = await Post.findOneAndDelete({ url });
         if( !post ) {
