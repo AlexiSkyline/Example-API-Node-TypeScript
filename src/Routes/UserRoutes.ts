@@ -16,7 +16,7 @@ class UserRoutes {
     }
 
     public async getUser( req: Request, res: Response ): Promise<any> {
-        const user = await User.findOne({ username: req.params.username });
+        const user = await User.findOne({ username: req.params.username }).populate( 'post', 'title url -_id' );
         res.json( user );
     }
 
