@@ -16,7 +16,8 @@ class UserRoutes {
     }
 
     public async getUser( req: Request, res: Response ): Promise<any> {
-        
+        const user = await User.findOne({ username: req.params.username });
+        res.json( user );
     }
 
     public async createUser( req: Request, res: Response ): Promise<void> {
@@ -33,6 +34,7 @@ class UserRoutes {
 
     routes() {
         this.router.get( '/', this.getUsers );
+        this.router.get( '/:username', this.getUser );
     }
 }
 
