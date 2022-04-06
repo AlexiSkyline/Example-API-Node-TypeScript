@@ -21,7 +21,9 @@ class UserRoutes {
     }
 
     public async createUser( req: Request, res: Response ): Promise<void> {
-        
+        const newUser = new User( req.body );
+        await newUser.save();
+        res.json({ data: newUser });
     }
 
     public async updateUser( req: Request, res: Response ): Promise<any> {
@@ -35,6 +37,7 @@ class UserRoutes {
     routes() {
         this.router.get( '/', this.getUsers );
         this.router.get( '/:username', this.getUser );
+        this.router.post( '/', this.createUser );
     }
 }
 
